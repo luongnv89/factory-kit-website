@@ -1,12 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" role="img" aria-labelledby="title description">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title description">
   <title id="title">factory-kit</title>
-  <desc id="description">factory-kit favicon. Simplified F and detached approval gate. The F becomes cream in a dark color scheme.</desc>
+  <desc id="description">factory-kit app icon: ink workflow stages and a green approval gate centered on a cream rounded tile.</desc>
   <metadata>Product: factory-kit; outlined wordmark: IBM Plex Mono Medium, weight 500, normal Latin; source: @fontsource/ibm-plex-mono 5.3.0; SIL Open Font License 1.1; font size 32, tracking -0.04em; no runtime font dependency.</metadata>
-  <style>
-    @media (prefers-color-scheme: dark) { #workflow { fill: #f6f4ef; } }
-  </style>
-  <g id="mark" transform="scale(.25)">
+  <rect width="512" height="512" rx="80" fill="#f6f4ef" />
+  <g id="mark" transform="translate(52 64) scale(6)">
     <path id="workflow" d="M8 8H42V20H20V30H36V42H20V56H8Z" fill="#14171a" />
+    <path id="stage" d="M28 50H40V56H28Z" fill="#14171a" />
     <path id="approval-gate" d="M48 8H60V20H48Z" fill="#0f7b4f" />
   </g>
 </svg>
