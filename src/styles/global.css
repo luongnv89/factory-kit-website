@@ -1,0 +1,43 @@
+@import "tailwindcss";
+@import "@fontsource/ibm-plex-sans/400.css";
+@import "@fontsource/ibm-plex-sans/500.css";
+@import "@fontsource/ibm-plex-sans/600.css";
+@import "@fontsource/ibm-plex-sans/700.css";
+@import "@fontsource/ibm-plex-mono/400.css";
+@import "@fontsource/ibm-plex-mono/500.css";
+
+/* Brief §14 palette — canonical CSS custom properties, exposed to
+   Tailwind as theme tokens via @theme below. */
+:root {
+  --paper: #f6f4ef;
+  --ink: #14171a;
+  --muted: #5b6168;
+  --rule: #dad6cc;
+  --signal: #0f7b4f;
+  --amber: #9a5b00;
+  --card: #ffffff;
+}
+
+@theme {
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-rule: var(--rule);
+  --color-signal: var(--signal);
+  --color-amber: var(--amber);
+  --color-card: var(--card);
+
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", monospace;
+}
+
+body {
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+}
+
+:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 2px;
+}

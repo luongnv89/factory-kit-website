@@ -1,0 +1,38 @@
+{
+  "name": "factory-kit-website",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Landing page for factory-kit, built by factory-kit itself (dogfood run).",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint .",
+    "typecheck": "astro check",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@fontsource/ibm-plex-mono": "5.3.0",
+    "@fontsource/ibm-plex-sans": "5.3.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.10",
+    "@eslint/js": "10.0.1",
+    "@tailwindcss/vite": "4.3.3",
+    "astro": "7.3.5",
+    "eslint": "10.11.0",
+    "eslint-plugin-astro": "3.2.1",
+    "prettier": "3.9.9",
+    "prettier-plugin-astro": "1.1.0",
+    "tailwindcss": "4.3.3",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.70.1",
+    "vitest": "5.0.2"
+  }
+}

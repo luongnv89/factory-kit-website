@@ -1,0 +1,7 @@
+dist/
+.astro/
+node_modules/
+package-lock.json
+# docs/brief.md is the authored source of truth — copied verbatim,
+# never reformatted.
+docs/brief.md
