@@ -1,0 +1,81 @@
+<section class="built-on" aria-labelledby="built-on-title">
+  <div class="section-inner">
+    <h2 id="built-on-title">Built on tools you already trust</h2>
+    <ul class="tool-list">
+      <li>
+        <h3>Hermes Agent</h3>
+        <p>Kanban workers</p>
+      </li>
+      <li>
+        <h3>IDD skills</h3>
+        <p>issue-resolver, issue-pr-review</p>
+      </li>
+      <li>
+        <h3>GitHub</h3>
+        <p>checks, branch protection, Pages previews</p>
+      </li>
+      <li>
+        <h3>Vercel</h3>
+        <p>alternative preview host</p>
+      </li>
+      <li>
+        <h3>Telegram</h3>
+        <p>status and control</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<style>
+  .built-on {
+    border-top: 1px solid var(--rule);
+  }
+
+  .section-inner {
+    max-width: 72rem;
+    margin-inline: auto;
+    padding: clamp(3.5rem, 7vw, 6rem) 1.5rem;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1.15;
+  }
+
+  .tool-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem 1rem;
+    margin: 2.5rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  h3,
+  p {
+    margin: 0;
+  }
+
+  h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  p {
+    margin-top: 0.375rem;
+    color: var(--muted);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+
+  @media (min-width: 48rem) {
+    .tool-list {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+  }
+</style>

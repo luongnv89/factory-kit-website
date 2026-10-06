@@ -1,0 +1,103 @@
+<section class="boundaries" id="boundaries" aria-labelledby="boundaries-title">
+  <div class="section-inner">
+    <h2 id="boundaries-title">Boundaries you can read in the manifest</h2>
+    <ol class="boundary-list">
+      <li>
+        <h3>Setup is a reviewed plan.</h3>
+        <p>
+          <code>factory-setup plan</code> only reads your repository.{" "}
+          <code>apply</code> writes the exact bytes you accepted, and nothing
+          else.
+        </p>
+      </li>
+      <li>
+        <h3>Readiness names its blockers.</h3>
+        <p>
+          An old Hermes, a signed-out model or an unprotected main branch each
+          stop dispatch with a named code.
+        </p>
+      </li>
+      <li>
+        <h3>Merges stay human.</h3>
+        <p>
+          Autonomous merge, production deploys and package publishing are off,
+          and the manifest has no key that turns them on.
+        </p>
+      </li>
+      <li>
+        <h3>Limits are explicit.</h3>
+        <p>
+          One active issue, two implementation attempts and 60 worker minutes
+          per issue, unless you change them within fixed bounds.
+        </p>
+      </li>
+      <li>
+        <h3>Removal keeps your work.</h3>
+        <p>
+          Uninstall deletes only the files factory-kit created and still owns.
+          Your edits stay where they are.
+        </p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<style>
+  .boundaries {
+    border-top: 1px solid var(--rule);
+  }
+
+  .section-inner {
+    max-width: 72rem;
+    margin-inline: auto;
+    padding: clamp(3.5rem, 7vw, 6rem) 1.5rem;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1.15;
+  }
+
+  .boundary-list {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+    margin: 2.5rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  h3,
+  p {
+    margin: 0;
+  }
+
+  h3 {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  p {
+    margin-top: 0.5rem;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  code {
+    color: var(--ink);
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+  }
+
+  @media (min-width: 48rem) {
+    .boundary-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 2rem;
+      row-gap: 1.75rem;
+    }
+  }
+</style>
