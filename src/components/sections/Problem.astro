@@ -1,0 +1,85 @@
+<section class="problem" aria-labelledby="problem-title">
+  <div class="section-inner">
+    <h2 id="problem-title">You still check every agent PR by hand</h2>
+    <p class="lead">
+      Coding agents can draft a fix in minutes. Then you spend the rest of the
+      hour working out what actually ran.
+    </p>
+    <div class="scenario-grid">
+      <article class="scenario-card">
+        <h3>
+          The agent says the tests pass. You can't tell which commit it tested,
+          or whether CI agrees.
+        </h3>
+      </article>
+      <article class="scenario-card">
+        <h3>
+          A session dies halfway. You restart it and find a duplicate branch and
+          a second PR.
+        </h3>
+      </article>
+      <article class="scenario-card">
+        <h3>
+          You approved a change this morning. Someone pushed after that, and
+          your approval still looks valid.
+        </h3>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .problem {
+    border-top: 1px solid var(--rule);
+  }
+
+  .section-inner {
+    max-width: 72rem;
+    margin-inline: auto;
+    padding: clamp(3.5rem, 7vw, 6rem) 1.5rem;
+  }
+
+  h2 {
+    max-width: 20ch;
+    margin: 0;
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1.15;
+  }
+
+  .lead {
+    max-width: 44rem;
+    margin: 1.25rem 0 0;
+    color: var(--muted);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+  }
+
+  .scenario-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+    margin-top: 2.5rem;
+  }
+
+  .scenario-card {
+    border: 1px solid var(--rule);
+    border-radius: 0.375rem;
+    padding: 1.5rem;
+    background: var(--card);
+  }
+
+  h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.65;
+  }
+
+  @media (min-width: 64rem) {
+    .scenario-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>
