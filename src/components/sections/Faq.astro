@@ -1,0 +1,100 @@
+<section class="faq" id="faq" aria-labelledby="faq-title">
+  <div class="section-inner">
+    <h2 id="faq-title">Questions</h2>
+    <div class="faq-list">
+      <details>
+        <summary>Can I install it?</summary>
+        <p>
+          Not yet. factory-kit is an internal preview while its v1.0 gate
+          closes. Follow the build on GitHub to hear when that changes.
+        </p>
+      </details>
+      <details>
+        <summary>Which agents does it run?</summary>
+        <p>
+          Hermes Kanban profile workers, with the model you pin for each role.
+          The tested setup uses openai-codex/gpt-6-luna for both implementation
+          and review.
+        </p>
+      </details>
+      <details>
+        <summary>Does it replace my CI?</summary>
+        <p>
+          No. Your required checks and branch protection decide. factory-kit
+          reads them and refuses to dispatch when the main branch is
+          unprotected.
+        </p>
+      </details>
+      <details>
+        <summary>Can it merge on its own?</summary>
+        <p>
+          No. Each merge needs a human approval for one specific commit, and
+          approvals expire after 60 minutes.
+        </p>
+      </details>
+      <details>
+        <summary>What if my machine restarts mid-task?</summary>
+        <p>
+          State lives in SQLite. On restart, factory-kit resumes, parks or
+          quarantines each task, and checks GitHub before it repeats any remote
+          action.
+        </p>
+      </details>
+      <details>
+        <summary>Where do approvals happen?</summary>
+        <p>
+          In Telegram from an allowlisted account, or from the local operator
+          CLI. The merges for this site were approved from the CLI.
+        </p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq {
+    border-top: 1px solid var(--rule);
+  }
+
+  .section-inner {
+    max-width: 72rem;
+    margin-inline: auto;
+    padding: clamp(3.5rem, 7vw, 6rem) 1.5rem;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1.15;
+  }
+
+  .faq-list {
+    margin-top: 2rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  details {
+    border-bottom: 1px solid var(--rule);
+    padding: 1.125rem 0;
+  }
+
+  summary {
+    cursor: pointer;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  summary:focus-visible {
+    outline: 2px solid var(--signal);
+    outline-offset: 4px;
+  }
+
+  p {
+    max-width: 52rem;
+    margin: 0.75rem 0 0;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+</style>

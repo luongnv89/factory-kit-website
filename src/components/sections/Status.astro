@@ -1,0 +1,53 @@
+<section class="status" id="status" aria-labelledby="status-title">
+  <div class="section-inner">
+    <h2 id="status-title">Where it stands</h2>
+    <p>
+      factory-kit 0.1.0 is an internal preview. Its v1.0 evidence gate is still
+      open: a few live checks must pass before a release, and there is no public
+      install yet.
+    </p>
+    <p>
+      This page is the first real project it shipped. Each section started as a
+      GitHub issue and went through the full pipeline: implementation,
+      independent review, CI, a preview and a human approval.
+    </p>
+    <a href="https://github.com/luongnv89/factory-kit-website/pulls?q=is%3Apr+is%3Amerged">
+      Browse the merged pull requests
+    </a>
+  </div>
+</section>
+
+<style>
+  .status {
+    border-top: 1px solid var(--rule);
+  }
+
+  .section-inner {
+    max-width: 72rem;
+    margin-inline: auto;
+    padding: clamp(3.5rem, 7vw, 6rem) 1.5rem;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1.15;
+  }
+
+  p {
+    max-width: 48rem;
+    margin: 1.25rem 0 0;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  a {
+    display: inline-block;
+    margin-top: 1.25rem;
+    color: var(--ink);
+    font-weight: 600;
+    text-underline-offset: 0.25em;
+  }
+</style>
