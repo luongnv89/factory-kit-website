@@ -1,23 +1,56 @@
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import { experimental_AstroContainer as AstroContainer } from "astro/container";
 import { describe, expect, it } from "vitest";
 
 import Index from "../src/pages/index.astro";
 
+const createContainer = () =>
+  AstroContainer.create({
+    astroConfig: { site: "https://luongnv.com", base: "/factory-kit-website/" },
+  });
+
 describe("index page", () => {
   it("renders the factory-kit smoke meta tag", async () => {
-    const container = await AstroContainer.create();
+    const container = await createContainer();
     const html = await container.renderToString(Index);
     expect(html).toContain('<meta name="factory-kit-smoke" content="landing"');
   });
 
+  it("renders the SEO metadata and absolute social image URL", async () => {
+    const container = await createContainer();
+    const html = await container.renderToString(Index);
+
+    expect(html).toContain(
+      "factory-kit: agents implement, you approve the verified revision",
+    );
+    expect(html).toContain(
+      'name="description" content="factory-kit runs opted-in GitHub issues through local Hermes agents, independent review, CI and a live preview, then merges only the commit you approve. Internal preview."',
+    );
+    expect(html).toContain('property="og:type" content="website"');
+    expect(html).toMatch(
+      /property="og:image" content="https:\/\/luongnv\.com\/(?:factory-kit-website\/)?og\.png"/,
+    );
+  });
+
+  it("ships a 1200 by 630 PNG social card", () => {
+    const image = readFileSync(resolve(process.cwd(), "public/og.png"));
+
+    expect(image.subarray(0, 8)).toEqual(
+      Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]),
+    );
+    expect(image.readUInt32BE(16)).toBe(1200);
+    expect(image.readUInt32BE(20)).toBe(630);
+  });
+
   it("renders exactly one h1", async () => {
-    const container = await AstroContainer.create();
+    const container = await createContainer();
     const html = await container.renderToString(Index);
     expect(html.match(/<h1[\s>]/g)).toHaveLength(1);
   });
 
   it("renders the hero copy and calls to action from the brief", async () => {
-    const container = await AstroContainer.create();
+    const container = await createContainer();
     const html = await container.renderToString(Index);
 
     expect(html).toContain("Internal preview · v0.1.0 · not yet installable");
@@ -33,7 +66,7 @@ describe("index page", () => {
   });
 
   it("renders all approval request fields in brief order", async () => {
-    const container = await AstroContainer.create();
+    const container = await createContainer();
     const html = await container.renderToString(Index);
     const labels = [
       "Repository",
@@ -58,7 +91,7 @@ describe("index page", () => {
   });
 
   it("renders the Problem and Cost sections with the brief copy", async () => {
-    const container = await AstroContainer.create();
+    const container = await createContainer();
     const html = await container.renderToString(Index);
 
     expect(html).toContain("You still check every agent PR by hand");
@@ -90,7 +123,7 @@ describe("index page", () => {
   });
 
   it("renders the How it works pipeline in order with its GitHub CTA", async () => {
-    const container = await AstroContainer.create();
+    const container = await createContainer();
     const html = await container.renderToString(Index);
     const titles = [
       "Opt in.",
@@ -112,7 +145,7 @@ describe("index page", () => {
   });
 
   it("renders the What you get section with the brief copy", async () => {
-    const container = await AstroContainer.create();
+    const container = await createContainer();
     const html = await container.renderToString(Index);
     const section = html.match(
       /<section[^>]*class="solution"[\s\S]*?<\/section>/,
@@ -135,7 +168,7 @@ describe("index page", () => {
   });
 
   it("renders the Boundaries section with its five rows", async () => {
-    const container = await AstroContainer.create();
+    const container = await createContainer();
     const html = await container.renderToString(Index);
     const section = html.match(
       /<section[^>]*id="boundaries"[\s\S]*?<\/section>/,
@@ -158,7 +191,7 @@ describe("index page", () => {
   });
 
   it("renders the Built on section with its five labelled items", async () => {
-    const container = await AstroContainer.create();
+    const container = await createContainer();
     const html = await container.renderToString(Index);
     const section = html.match(
       /<section[^>]*class="built-on"[\s\S]*?<\/section>/,
@@ -185,7 +218,7 @@ describe("index page", () => {
   });
 
   it("renders the Status section with its merged pull request link", async () => {
-    const container = await AstroContainer.create();
+    const container = await createContainer();
     const html = await container.renderToString(Index);
     const section = html.match(
       /<section[^>]*id="status"[\s\S]*?<\/section>/,
@@ -205,7 +238,7 @@ describe("index page", () => {
   });
 
   it("renders all six FAQ items as native details and summary elements", async () => {
-    const container = await AstroContainer.create();
+    const container = await createContainer();
     const html = await container.renderToString(Index);
     const section = html.match(/<section[^>]*id="faq"[\s\S]*?<\/section>/)?.[0];
     const questions = [
@@ -245,7 +278,7 @@ describe("index page", () => {
   });
 
   it("renders the footer attribution, links and copyright", async () => {
-    const container = await AstroContainer.create();
+    const container = await createContainer();
     const html = await container.renderToString(Index);
     const footer = html.match(/<footer[^>]*>[\s\S]*?<\/footer>/)?.[0];
 
