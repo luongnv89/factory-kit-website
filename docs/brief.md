@@ -44,7 +44,10 @@ carry the ids used by the nav: `#how-it-works`, `#boundaries`,
 
 ## 2. Header
 
-Wordmark text: `factory-kit` set in the mono font. Nav links (anchors):
+Brand identity: use the approved geometric factory-kit workflow mark
+from `public/logo/logo-mark.svg` next to the live lowercase `factory-kit`
+text set in IBM Plex Mono Medium 500. The text remains the accessible
+home-link name; the decorative mark has empty alternative text. Nav links (anchors):
 "How it works" (#how-it-works), "Boundaries" (#boundaries), "Status"
 (#status), "FAQ" (#faq). On screens narrower than 640px the nav links
 wrap below the wordmark; no hamburger menu, no JavaScript.
@@ -233,8 +236,13 @@ Left: "factory-kit · built by Luong Nguyen". Right: links "GitHub"
   image `og.png` 1200x630 generated as a static asset from an SVG source
   committed in `public/`). The image URL must be absolute:
   `new URL(import.meta.env.BASE_URL + "og.png", Astro.site)`.
-- `public/favicon.svg` (a simple monogram "fk" in the accent color) and
-  `public/robots.txt` allowing all crawlers.
+- `public/favicon.svg` uses the approved simplified factory-kit mark,
+  with a system dark-mode variant; `public/apple-touch-icon.png` is
+  derived from the approved icon. Keep the full approved logo suite,
+  brand showcase and OFL notices under `public/logo/`.
+- The static 1200x630 social card includes the approved geometric mark
+  and preserves its existing headline and status copy. `public/robots.txt`
+  allows all crawlers.
 - The site is served from a sub-path (`/factory-kit-website/` in
   production, `/factory-kit-website/previews/<id>/` for previews). Build
   every internal asset or page URL from `import.meta.env.BASE_URL`; never

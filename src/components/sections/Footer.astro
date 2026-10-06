@@ -1,8 +1,17 @@
+---
+const logoMark = import.meta.env.BASE_URL + "logo/logo-mark.svg";
+const brandShowcase = import.meta.env.BASE_URL + "logo/brand-showcase.html";
+---
+
 <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-top">
-      <p class="attribution">factory-kit · built by Luong Nguyen</p>
+      <p class="attribution">
+        <img src={logoMark} width="32" height="32" alt="" aria-hidden="true" />
+        factory-kit · built by Luong Nguyen
+      </p>
       <nav aria-label="Footer">
+        <a href={brandShowcase}>Brand identity</a>
         <a href="https://github.com/luongnv89">GitHub</a>
         <a href="https://github.com/luongnv89/factory-kit-website">
           Site source
@@ -39,8 +48,15 @@
   }
 
   .attribution {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
     color: var(--ink);
     font-weight: 500;
+  }
+
+  .attribution img {
+    flex: 0 0 auto;
   }
 
   nav {
