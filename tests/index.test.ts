@@ -183,4 +183,82 @@ describe("index page", () => {
     expect(section).toContain("status and control");
     expect(html).toMatch(/<a href="#boundaries"[^>]*>Boundaries<\/a>/);
   });
+
+  it("renders the Status section with its merged pull request link", async () => {
+    const container = await AstroContainer.create();
+    const html = await container.renderToString(Index);
+    const section = html.match(
+      /<section[^>]*id="status"[\s\S]*?<\/section>/,
+    )?.[0];
+
+    expect(section).toBeDefined();
+    expect(section).toContain("Where it stands");
+    expect(section).toContain(
+      "factory-kit 0.1.0 is an internal preview. Its v1.0 evidence gate is still open: a few live checks must pass before a release, and there is no public install yet.",
+    );
+    expect(section).toContain(
+      "This page is the first real project it shipped. Each section started as a GitHub issue and went through the full pipeline: implementation, independent review, CI, a preview and a human approval.",
+    );
+    expect(section).toMatch(
+      /<a href="https:\/\/github\.com\/luongnv89\/factory-kit-website\/pulls\?q=is%3Apr\+is%3Amerged"[^>]*>\s*Browse the merged pull requests\s*<\/a>/,
+    );
+  });
+
+  it("renders all six FAQ items as native details and summary elements", async () => {
+    const container = await AstroContainer.create();
+    const html = await container.renderToString(Index);
+    const section = html.match(/<section[^>]*id="faq"[\s\S]*?<\/section>/)?.[0];
+    const questions = [
+      "Can I install it?",
+      "Which agents does it run?",
+      "Does it replace my CI?",
+      "Can it merge on its own?",
+      "What if my machine restarts mid-task?",
+      "Where do approvals happen?",
+    ];
+
+    expect(section).toBeDefined();
+    expect(section!.match(/<details\b/g)).toHaveLength(6);
+    expect(
+      [...section!.matchAll(/<summary[^>]*>(.*?)<\/summary>/g)].map(
+        (match) => match[1],
+      ),
+    ).toEqual(questions);
+    expect(section).toContain(
+      "Not yet. factory-kit is an internal preview while its v1.0 gate closes.",
+    );
+    expect(section).toContain(
+      "The tested setup uses openai-codex/gpt-6-luna for both implementation and review.",
+    );
+    expect(section).toContain(
+      "factory-kit reads them and refuses to dispatch when the main branch is unprotected.",
+    );
+    expect(section).toContain("approvals expire after 60 minutes.");
+    expect(section).toContain(
+      "checks GitHub before it repeats any remote action.",
+    );
+    expect(section).toContain(
+      "The merges for this site were approved from the CLI.",
+    );
+    expect(html).toMatch(/<a href="#status"[^>]*>Status<\/a>/);
+    expect(html).toMatch(/<a href="#faq"[^>]*>FAQ<\/a>/);
+  });
+
+  it("renders the footer attribution, links and copyright", async () => {
+    const container = await AstroContainer.create();
+    const html = await container.renderToString(Index);
+    const footer = html.match(/<footer[^>]*>[\s\S]*?<\/footer>/)?.[0];
+
+    expect(footer).toBeDefined();
+    expect(footer).toContain("factory-kit · built by Luong Nguyen");
+    expect(footer).toMatch(
+      /<a href="https:\/\/github\.com\/luongnv89"[^>]*>GitHub<\/a>/,
+    );
+    expect(footer).toMatch(
+      /<a href="https:\/\/github\.com\/luongnv89\/factory-kit-website"[^>]*>Site source<\/a>/,
+    );
+    expect(footer).toContain(
+      "© 2026 Luong Nguyen. Site code under the MIT License.",
+    );
+  });
 });
