@@ -1,0 +1,70 @@
+<header class="site-header">
+  <div class="header-inner">
+    <a class="wordmark" href="#top" aria-label="factory-kit home">
+      factory-kit
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="#how-it-works">How it works</a>
+      <a href="#boundaries">Boundaries</a>
+      <a href="#status">Status</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    max-width: 72rem;
+    min-height: 5rem;
+    margin-inline: auto;
+    padding: 1rem 1.5rem;
+  }
+
+  .wordmark {
+    color: var(--ink);
+    font-family: var(--font-mono);
+    font-size: 1.125rem;
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    text-decoration: none;
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+  }
+
+  nav a {
+    color: var(--muted);
+    font-size: 0.9375rem;
+    text-decoration: none;
+  }
+
+  nav a:hover {
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+  }
+
+  @media (max-width: 639px) {
+    .header-inner {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 0.875rem;
+      padding-block: 1.25rem;
+    }
+
+    nav {
+      column-gap: 1.125rem;
+    }
+  }
+</style>
