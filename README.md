@@ -22,5 +22,5 @@ Content and design live in [docs/brief.md](docs/brief.md); working
 conventions for agents live in [AGENTS.md](AGENTS.md).
 
 The site is served on GitHub Pages at
-https://luongnv89.github.io/factory-kit-website/ — previews live under
+https://luongnv.com/factory-kit-website/ — previews live under
 `previews/<preview_id>/` on the `gh-pages` branch.
