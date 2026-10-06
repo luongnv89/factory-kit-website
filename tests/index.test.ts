@@ -133,4 +133,54 @@ describe("index page", () => {
       "The request you approve names its head commit, the reviewer's verdict, the check runs and the preview URL. If any of them change, factory-kit asks you again.",
     );
   });
+
+  it("renders the Boundaries section with its five rows", async () => {
+    const container = await AstroContainer.create();
+    const html = await container.renderToString(Index);
+    const section = html.match(
+      /<section[^>]*id="boundaries"[\s\S]*?<\/section>/,
+    )?.[0];
+    const titles = [
+      "Setup is a reviewed plan.",
+      "Readiness names its blockers.",
+      "Merges stay human.",
+      "Limits are explicit.",
+      "Removal keeps your work.",
+    ];
+
+    expect(section).toBeDefined();
+    expect(section).toContain("Boundaries you can read in the manifest");
+    expect(
+      [...section!.matchAll(/<h3[^>]*>(.*?)<\/h3>/g)].map((match) => match[1]),
+    ).toEqual(titles);
+    expect(section).toMatch(/<code[^>]*>factory-setup plan<\/code>/);
+    expect(section).toMatch(/<code[^>]*>apply<\/code>/);
+  });
+
+  it("renders the Built on section with its five labelled items", async () => {
+    const container = await AstroContainer.create();
+    const html = await container.renderToString(Index);
+    const section = html.match(
+      /<section[^>]*class="built-on"[\s\S]*?<\/section>/,
+    )?.[0];
+    const labels = [
+      "Hermes Agent",
+      "IDD skills",
+      "GitHub",
+      "Vercel",
+      "Telegram",
+    ];
+
+    expect(section).toBeDefined();
+    expect(section).toContain("Built on tools you already trust");
+    expect(
+      [...section!.matchAll(/<h3[^>]*>(.*?)<\/h3>/g)].map((match) => match[1]),
+    ).toEqual(labels);
+    expect(section).toContain("Kanban workers");
+    expect(section).toContain("issue-resolver, issue-pr-review");
+    expect(section).toContain("checks, branch protection, Pages previews");
+    expect(section).toContain("alternative preview host");
+    expect(section).toContain("status and control");
+    expect(html).toMatch(/<a href="#boundaries"[^>]*>Boundaries<\/a>/);
+  });
 });
