@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title description">
-  <title id="title">factory-kit</title>
-  <desc id="description">A geometric F built from workflow stages, with a separate green approval gate.</desc>
-  <g id="mark">
-    <path id="workflow" d="M8 8H42V20H20V30H36V42H20V56H8Z" fill="#14171a" />
-    <path id="stage" d="M28 50H40V56H28Z" fill="#14171a" />
-    <path id="approval-gate" d="M48 8H60V20H48Z" fill="#0f7b4f" />
-  </g>
-</svg>
