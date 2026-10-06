@@ -1,0 +1,83 @@
+<section class="cost" aria-labelledby="cost-title">
+  <div class="section-inner">
+    <h2 id="cost-title">The cleanup lands on you</h2>
+    <div class="consequence-list">
+      <article class="consequence-row">
+        <h3>Repeated checks.</h3>
+        <p>
+          You re-run CI you already paid for, because the evidence never names a
+          revision.
+        </p>
+      </article>
+      <article class="consequence-row">
+        <h3>A noisy review queue.</h3>
+        <p>
+          PRs arrive claiming success, and each one needs a full manual audit.
+        </p>
+      </article>
+      <article class="consequence-row">
+        <h3>Risky merge rights.</h3>
+        <p>
+          Give an agent the merge button and one bad run becomes a revert on
+          main.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cost {
+    border-top: 1px solid var(--rule);
+  }
+
+  .section-inner {
+    max-width: 72rem;
+    margin-inline: auto;
+    padding: clamp(3.5rem, 7vw, 6rem) 1.5rem;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1.15;
+  }
+
+  .consequence-list {
+    margin-top: 2rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  .consequence-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.5rem;
+    border-bottom: 1px solid var(--rule);
+    padding-block: 1.25rem;
+  }
+
+  h3,
+  p {
+    margin: 0;
+  }
+
+  h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  p {
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  @media (min-width: 48rem) {
+    .consequence-row {
+      grid-template-columns: minmax(12rem, 0.65fr) minmax(0, 1.35fr);
+      gap: 2rem;
+    }
+  }
+</style>

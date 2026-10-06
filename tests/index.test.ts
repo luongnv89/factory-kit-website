@@ -56,4 +56,36 @@ describe("index page", () => {
     expect(html).toContain("Approve");
     expect(html).toContain("Reject");
   });
+
+  it("renders the Problem and Cost sections with the brief copy", async () => {
+    const container = await AstroContainer.create();
+    const html = await container.renderToString(Index);
+
+    expect(html).toContain("You still check every agent PR by hand");
+    expect(html).toContain(
+      "Coding agents can draft a fix in minutes. Then you spend the rest of the hour working out what actually ran.",
+    );
+    expect(html).toContain(
+      "The agent says the tests pass. You can't tell which commit it tested, or whether CI agrees.",
+    );
+    expect(html).toContain(
+      "A session dies halfway. You restart it and find a duplicate branch and a second PR.",
+    );
+    expect(html).toContain(
+      "You approved a change this morning. Someone pushed after that, and your approval still looks valid.",
+    );
+    expect(html).toContain("The cleanup lands on you");
+    expect(html).toContain("Repeated checks.");
+    expect(html).toContain(
+      "You re-run CI you already paid for, because the evidence never names a revision.",
+    );
+    expect(html).toContain("A noisy review queue.");
+    expect(html).toContain(
+      "PRs arrive claiming success, and each one needs a full manual audit.",
+    );
+    expect(html).toContain("Risky merge rights.");
+    expect(html).toContain(
+      "Give an agent the merge button and one bad run becomes a revert on main.",
+    );
+  });
 });
