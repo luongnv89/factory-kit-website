@@ -1,12 +1,33 @@
 ---
 import "../styles/global.css";
+
+const title =
+  "factory-kit: agents implement, you approve the verified revision";
+const description =
+  "factory-kit runs opted-in GitHub issues through local Hermes agents, independent review, CI and a live preview, then merges only the commit you approve. Internal preview.";
+const ogImage = new URL(import.meta.env.BASE_URL + "og.png", Astro.site);
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>factory-kit</title>
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0F7B4F" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href={import.meta.env.BASE_URL + "favicon.svg"}
+    />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
     <meta name="factory-kit-smoke" content="landing" />
   </head>
   <body>
