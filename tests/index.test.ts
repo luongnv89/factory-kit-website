@@ -1,4 +1,5 @@
 import { readFileSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { resolve } from "node:path";
 import { experimental_AstroContainer as AstroContainer } from "astro/container";
 import { describe, expect, it } from "vitest";
@@ -293,5 +294,81 @@ describe("index page", () => {
     expect(footer).toContain(
       "© 2026 Luong Nguyen. Site code under the MIT License.",
     );
+  });
+
+  it("ships approved logo assets byte-for-byte with canonical geometry", () => {
+    const logoDir = resolve(process.cwd(), "public/logo");
+    const manifest = JSON.parse(
+      readFileSync(resolve(logoDir, "assets.sha256.json"), "utf8"),
+    ) as Record<string, string>;
+
+    for (const [filename, expected] of Object.entries(manifest)) {
+      const actual = createHash("sha256")
+        .update(readFileSync(resolve(logoDir, filename)))
+        .digest("hex");
+      expect(actual, filename).toBe(expected);
+    }
+
+    const mark = readFileSync(resolve(logoDir, "logo-mark.svg"), "utf8");
+    expect(mark).toContain("M8 8H42V20H20V30H36V42H20V56H8Z");
+    expect(mark).toContain("M28 50H40V56H28Z");
+    expect(mark).toContain("M48 8H60V20H48Z");
+  });
+
+  it("renders accessible header and footer branding with base-aware links", async () => {
+    const headerSource = readFileSync(
+      resolve(process.cwd(), "src/components/sections/Header.astro"),
+      "utf8",
+    );
+    const footerSource = readFileSync(
+      resolve(process.cwd(), "src/components/sections/Footer.astro"),
+      "utf8",
+    );
+    expect(headerSource).toContain(
+      'import.meta.env.BASE_URL + "logo/logo-mark.svg"',
+    );
+    expect(footerSource).toContain(
+      'import.meta.env.BASE_URL + "logo/brand-showcase.html"',
+    );
+
+    const container = await createContainer();
+    const html = await container.renderToString(Index);
+    const header = html.match(/<header[^>]*>[\s\S]*?<\/header>/)?.[0];
+    const footer = html.match(/<footer[^>]*>[\s\S]*?<\/footer>/)?.[0];
+
+    expect(header).toContain('src="/logo/logo-mark.svg"');
+    expect(header).toMatch(/aria-label="factory-kit home"/);
+    expect(header).toMatch(/alt=""/);
+    expect(footer).toContain('src="/logo/logo-mark.svg"');
+    expect(footer).toContain('href="/logo/brand-showcase.html"');
+    expect(footer).toContain(">Brand identity</a>");
+  });
+
+  it("ships favicon from the approved source and a 180 by 180 touch icon", () => {
+    const publicDir = resolve(process.cwd(), "public");
+    const canonical = readFileSync(resolve(publicDir, "logo/favicon.svg"));
+    expect(readFileSync(resolve(publicDir, "favicon.svg"))).toEqual(canonical);
+    const icon = readFileSync(resolve(publicDir, "apple-touch-icon.png"));
+    expect(icon.subarray(0, 8)).toEqual(
+      Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]),
+    );
+    expect(icon.readUInt32BE(16)).toBe(180);
+    expect(icon.readUInt32BE(20)).toBe(180);
+    const favicon = canonical.toString("utf8");
+    expect(favicon).toContain("prefers-color-scheme: dark");
+    expect(favicon).toContain("M8 8H42V20H20V30H36V42H20V56H8Z");
+  });
+
+  it("keeps social-card copy and includes the approved mark", () => {
+    const socialCard = readFileSync(
+      resolve(process.cwd(), "public/og.svg"),
+      "utf8",
+    );
+    expect(socialCard).toContain("M8 8H42V20H20V30H36V42H20V56H8Z");
+    expect(socialCard).toContain("FACTORY-KIT / INTERNAL PREVIEW");
+    expect(socialCard).toContain("Agents implement");
+    expect(socialCard).toContain("You approve the verified revision.");
+    expect(socialCard).toContain("LOCAL AGENTS · INDEPENDENT REVIEW · YOUR CI");
+    expect(socialCard).not.toContain("data:image/");
   });
 });

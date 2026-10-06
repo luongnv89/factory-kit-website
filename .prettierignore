@@ -5,3 +5,6 @@ package-lock.json
 # docs/brief.md is the authored source of truth — copied verbatim,
 # never reformatted.
 docs/brief.md
+# Operator-approved SVG sources are byte-locked by public/logo/assets.sha256.json.
+public/logo/**
+public/favicon.svg
