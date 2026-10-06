@@ -52,5 +52,11 @@ This must pass before you finish. Node 24 (see `.nvmrc`).
   them.
 - Never add `.github/dependabot.yml`, `renovate.json`, `.mergify.yml`
   or `.kodiak.toml` — factory-kit treats them as competing automation.
+- Build every internal URL (assets, favicon, og image, links to site
+  pages) from `import.meta.env.BASE_URL`; never hardcode a leading `/`.
+  Absolute social-card URLs use
+  `new URL(import.meta.env.BASE_URL + 'og.png', Astro.site)`. The site
+  is served at /factory-kit-website/ and previews at
+  /factory-kit-website/previews/<id>/.
 - Agents commit on their assigned branch and never push or open pull
   requests — the factory publishes.

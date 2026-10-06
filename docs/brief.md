@@ -11,8 +11,8 @@ exclamation marks or emoji anywhere on the page.
   installable yet, and the GitHub repository for the kit is private.
 - It runs on the operator's own machine through Hermes Agent (Kanban
   profile workers) and reuses IDD skills (`issue-resolver`,
-  `issue-pr-review`), GitHub checks and branch protection, Vercel
-  previews and Telegram.
+  `issue-pr-review`), GitHub checks and branch protection, GitHub Pages
+  or Vercel previews and Telegram.
 - Default limits: one active issue, two implementation attempts
   (initial plus one fix), 60 active worker minutes per issue, 24 wall
   hours.
@@ -61,7 +61,7 @@ Headline (the page's only `h1`):
 
 Subheadline:
 
-> factory-kit runs opted-in GitHub issues through your local Hermes agents, an independent review, your CI and a Vercel preview. Then it asks you to approve one exact commit, and it merges only that commit.
+> factory-kit runs opted-in GitHub issues through your local Hermes agents, an independent review, your CI and a live preview. Then it asks you to approve one exact commit, and it merges only that commit.
 
 Primary CTA button: "Follow the build on GitHub" linking to
 `https://github.com/luongnv89`.
@@ -132,7 +132,7 @@ in the component; no icon fonts, no external images).
 
 1. **Opt in.** > Label a GitHub issue `factory-kit`. It needs acceptance criteria, and nothing written in the issue can widen what the agents may do.
 2. **Implement and review.** > A Hermes worker implements the issue in an isolated git worktree. A separate reviewer session checks the diff against the criteria. One fix round is allowed.
-3. **Verify and preview.** > factory-kit opens a PR for the reviewed commit, waits for your required checks on that exact head, deploys a Vercel preview and smoke-tests it.
+3. **Verify and preview.** > factory-kit opens a PR for the reviewed commit, waits for your required checks on that exact head, publishes a preview of it and smoke-tests the URL.
 4. **Approve and merge.** > You approve that commit. factory-kit rechecks head, base, checks and preview, squash-merges with an expected-head guard, and reports the merge SHA that GitHub recorded.
 
 CTA after the steps: "Follow the build on GitHub" (same URL as the hero
@@ -151,7 +151,7 @@ Lead paragraph:
 Four feature cards (title in bold, sentence after):
 
 1. **Reviews tied to one SHA.** > A separate reviewer session records its verdict against the exact commit, and your CI has to pass on that same head.
-2. **Previews of the reviewed revision.** > factory-kit deploys that commit to Vercel and smoke-tests the URL before it asks you anything.
+2. **Previews of the reviewed revision.** > factory-kit publishes that exact commit as a preview on GitHub Pages or Vercel and smoke-tests the URL before it asks you anything.
 3. **Approvals that expire.** > Your approval covers one head, one base and one preview for 60 minutes. A new push cancels it.
 4. **Recovery without duplicates.** > Durable state and GitHub reconciliation resume work after a crash without opening a second PR.
 
@@ -181,8 +181,9 @@ Section heading:
 
 A row of five labelled items (text labels; no third-party logos):
 "Hermes Agent" (Kanban workers), "IDD skills" (issue-resolver,
-issue-pr-review), "GitHub" (checks, branch protection), "Vercel"
-(previews), "Telegram" (status and control). Render the parenthetical as
+issue-pr-review), "GitHub" (checks, branch protection, Pages
+previews), "Vercel" (alternative preview host), "Telegram" (status and
+control). Render the parenthetical as
 a muted second line.
 
 ## 10. Where it stands
@@ -227,12 +228,17 @@ Left: "factory-kit · built by Luong Nguyen". Right: links "GitHub"
 ## 13. SEO and metadata
 
 - `<title>`: "factory-kit: agents implement, you approve the verified revision"
-- meta description: "factory-kit runs opted-in GitHub issues through local Hermes agents, independent review, CI and a Vercel preview, then merges only the commit you approve. Internal preview."
+- meta description: "factory-kit runs opted-in GitHub issues through local Hermes agents, independent review, CI and a live preview, then merges only the commit you approve. Internal preview."
 - Open Graph + Twitter card tags (title, description, type `website`,
-  image `/og.png` 1200x630 generated as a static asset from an SVG
-  source committed in `public/`).
+  image `og.png` 1200x630 generated as a static asset from an SVG source
+  committed in `public/`). The image URL must be absolute:
+  `new URL(import.meta.env.BASE_URL + "og.png", Astro.site)`.
 - `public/favicon.svg` (a simple monogram "fk" in the accent color) and
   `public/robots.txt` allowing all crawlers.
+- The site is served from a sub-path (`/factory-kit-website/` in
+  production, `/factory-kit-website/previews/<id>/` for previews). Build
+  every internal asset or page URL from `import.meta.env.BASE_URL`; never
+  hardcode a leading `/`.
 - `<html lang="en">`, viewport meta, theme-color meta.
 - Keep `<meta name="factory-kit-smoke" content="landing">` in the base
   layout. The factory's preview smoke check looks for it; removing it
