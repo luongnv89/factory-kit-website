@@ -110,4 +110,27 @@ describe("index page", () => {
     expect(section).toContain('href="https://github.com/luongnv89"');
     expect(section).toContain("Follow the build on GitHub");
   });
+
+  it("renders the What you get section with the brief copy", async () => {
+    const container = await AstroContainer.create();
+    const html = await container.renderToString(Index);
+    const section = html.match(
+      /<section[^>]*class="solution"[\s\S]*?<\/section>/,
+    )?.[0];
+    const titles = [
+      "Reviews tied to one SHA.",
+      "Previews of the reviewed revision.",
+      "Approvals that expire.",
+      "Recovery without duplicates.",
+    ];
+
+    expect(section).toBeDefined();
+    expect(section).toContain("Evidence first, then your approval");
+    expect(
+      [...section!.matchAll(/<h3[^>]*>(.*?)<\/h3>/g)].map((match) => match[1]),
+    ).toEqual(titles);
+    expect(section).toContain(
+      "The request you approve names its head commit, the reviewer's verdict, the check runs and the preview URL. If any of them change, factory-kit asks you again.",
+    );
+  });
 });
