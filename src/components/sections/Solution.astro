@@ -1,0 +1,116 @@
+<section class="solution" aria-labelledby="solution-title">
+  <div class="section-inner">
+    <h2 id="solution-title">Evidence first, then your approval</h2>
+    <p class="lead">
+      factory-kit is a thin layer over tools you already run. Hermes Kanban
+      schedules the work, IDD skills do the engineering and GitHub stays the
+      source of truth. factory-kit adds the checks between them.
+    </p>
+    <div class="feature-grid">
+      <article class="feature-card">
+        <h3>Reviews tied to one SHA.</h3>
+        <p>
+          A separate reviewer session records its verdict against the exact
+          commit, and your CI has to pass on that same head.
+        </p>
+      </article>
+      <article class="feature-card">
+        <h3>Previews of the reviewed revision.</h3>
+        <p>
+          factory-kit publishes that exact commit as a preview on GitHub Pages
+          or Vercel and smoke-tests the URL before it asks you anything.
+        </p>
+      </article>
+      <article class="feature-card">
+        <h3>Approvals that expire.</h3>
+        <p>
+          Your approval covers one head, one base and one preview for 60
+          minutes. A new push cancels it.
+        </p>
+      </article>
+      <article class="feature-card">
+        <h3>Recovery without duplicates.</h3>
+        <p>
+          Durable state and GitHub reconciliation resume work after a crash
+          without opening a second PR.
+        </p>
+      </article>
+    </div>
+    <p class="closing">
+      The request you approve names its head commit, the reviewer's verdict, the
+      check runs and the preview URL. If any of them change, factory-kit asks
+      you again.
+    </p>
+  </div>
+</section>
+
+<style>
+  .solution {
+    border-top: 1px solid var(--rule);
+  }
+
+  .section-inner {
+    max-width: 72rem;
+    margin-inline: auto;
+    padding: clamp(3.5rem, 7vw, 6rem) 1.5rem;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1.15;
+  }
+
+  .lead {
+    max-width: 52rem;
+    margin: 1.25rem 0 0;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+    margin-top: 2.5rem;
+  }
+
+  .feature-card {
+    min-width: 0;
+    border: 1px solid var(--rule);
+    border-radius: 0.25rem;
+    background: var(--card);
+    padding: 1.5rem;
+  }
+
+  h3,
+  p {
+    margin: 0;
+  }
+
+  h3 {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .feature-card p {
+    margin-top: 0.625rem;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  .closing {
+    max-width: 52rem;
+    margin-top: 2rem;
+    line-height: 1.65;
+  }
+
+  @media (min-width: 48rem) {
+    .feature-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>
