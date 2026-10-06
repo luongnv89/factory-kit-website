@@ -1,0 +1,215 @@
+<section
+  class="how-it-works"
+  id="how-it-works"
+  aria-labelledby="how-it-works-title"
+>
+  <div class="section-inner">
+    <h2 id="how-it-works-title">Four stages, one commit, your decision</h2>
+    <ol class="pipeline">
+      <li class="pipeline-step">
+        <div class="step-marker">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M12 3v18M5 8l7-5 7 5" />
+            <path d="M5 14v5h14v-5" />
+          </svg>
+          <span class="step-number">01</span>
+        </div>
+        <h3>Opt in.</h3>
+        <p>
+          Label a GitHub issue <code>factory-kit</code>. It needs acceptance
+          criteria, and nothing written in the issue can widen what the agents
+          may do.
+        </p>
+      </li>
+      <li class="pipeline-step">
+        <div class="step-marker">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M8 6H5a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-3" />
+            <path d="m9 15 1-4 9-9 4 4-9 9-5 1Z" />
+          </svg>
+          <span class="step-number">02</span>
+        </div>
+        <h3>Implement and review.</h3>
+        <p>
+          A Hermes worker implements the issue in an isolated git worktree. A
+          separate reviewer session checks the diff against the criteria. One
+          fix round is allowed.
+        </p>
+      </li>
+      <li class="pipeline-step">
+        <div class="step-marker">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M3 12h18M12 3v18" />
+            <circle cx="12" cy="12" r="9" />
+            <path d="m8 12 2.5 2.5L16 9" />
+          </svg>
+          <span class="step-number">03</span>
+        </div>
+        <h3>Verify and preview.</h3>
+        <p>
+          factory-kit opens a PR for the reviewed commit, waits for your
+          required checks on that exact head, publishes a preview of it and
+          smoke-tests the URL.
+        </p>
+      </li>
+      <li class="pipeline-step">
+        <div class="step-marker">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="m5 12 4 4L19 6" />
+            <path d="M12 22a10 10 0 1 0-10-10" />
+          </svg>
+          <span class="step-number">04</span>
+        </div>
+        <h3>Approve and merge.</h3>
+        <p>
+          You approve that commit. factory-kit rechecks head, base, checks and
+          preview, squash-merges with an expected-head guard, and reports the
+          merge SHA that GitHub recorded.
+        </p>
+      </li>
+    </ol>
+    <a class="build-cta" href="https://github.com/luongnv89">
+      Follow the build on GitHub
+    </a>
+  </div>
+</section>
+
+<style>
+  .how-it-works {
+    border-top: 1px solid var(--rule);
+  }
+
+  .section-inner {
+    max-width: 72rem;
+    margin-inline: auto;
+    padding: clamp(3.5rem, 7vw, 6rem) 1.5rem;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1.15;
+  }
+
+  .pipeline {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+    margin: 2.5rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .pipeline-step {
+    position: relative;
+    min-width: 0;
+  }
+
+  .step-marker {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+    color: var(--signal);
+  }
+
+  .step-marker svg {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .step-number {
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+  }
+
+  h3,
+  p {
+    margin: 0;
+  }
+
+  h3 {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  p {
+    margin-top: 0.625rem;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  code {
+    color: var(--ink);
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+  }
+
+  .build-cta {
+    display: inline-flex;
+    margin-top: 2.5rem;
+    border-radius: 0.25rem;
+    background: var(--signal);
+    padding: 0.75rem 1rem;
+    color: var(--card);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .build-cta:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  @media (min-width: 64rem) {
+    .pipeline {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+
+    .pipeline-step:not(:last-child)::after {
+      position: absolute;
+      top: 1rem;
+      left: 3.25rem;
+      width: calc(100% - 1.75rem);
+      border-top: 1px solid var(--rule);
+      content: "";
+    }
+  }
+</style>

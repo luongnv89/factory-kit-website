@@ -88,4 +88,26 @@ describe("index page", () => {
       "Give an agent the merge button and one bad run becomes a revert on main.",
     );
   });
+
+  it("renders the How it works pipeline in order with its GitHub CTA", async () => {
+    const container = await AstroContainer.create();
+    const html = await container.renderToString(Index);
+    const titles = [
+      "Opt in.",
+      "Implement and review.",
+      "Verify and preview.",
+      "Approve and merge.",
+    ];
+    const section = html.match(
+      /<section[^>]*id="how-it-works"[\s\S]*?<\/section>/,
+    )?.[0];
+
+    expect(section).toBeDefined();
+    expect(section).toContain("Four stages, one commit, your decision");
+    expect(
+      [...section!.matchAll(/<h3[^>]*>(.*?)<\/h3>/g)].map((match) => match[1]),
+    ).toEqual(titles);
+    expect(section).toContain('href="https://github.com/luongnv89"');
+    expect(section).toContain("Follow the build on GitHub");
+  });
 });
